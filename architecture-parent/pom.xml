@@ -15,7 +15,7 @@
       <spring.version>5.0.2.RELEASE</spring.version>
       <slf4j.version>1.7.18</slf4j.version>
       <log4j.version>1.2.17</log4j.version>
-      <dubbo.version>2.5.3</dubbo.version>
+      <dubbo.version>2.6.12</dubbo.version>
   </properties>
 
   <dependencies>
