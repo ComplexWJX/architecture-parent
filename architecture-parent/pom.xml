@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>architecture-parent</name>
+  <name>dubbo-sample</name>
   <url>http://maven.apache.org</url>
 
   <properties>

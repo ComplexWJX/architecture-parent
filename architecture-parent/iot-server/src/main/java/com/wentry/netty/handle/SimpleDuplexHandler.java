@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 
+import java.net.SocketAddress;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,6 +17,17 @@ import java.util.concurrent.TimeUnit;
  */
 @ChannelHandler.Sharable
 public class SimpleDuplexHandler extends ChannelDuplexHandler {
+
+    @Override
+    public void bind(ChannelHandlerContext ctx, SocketAddress localAddress, ChannelPromise promise) throws Exception {
+        // 作为客户端时调用
+        super.bind(ctx, localAddress, promise);
+    }
+
+    @Override
+    public void connect(ChannelHandlerContext ctx, SocketAddress remoteAddress, SocketAddress localAddress, ChannelPromise promise) throws Exception {
+        super.connect(ctx, remoteAddress, localAddress, promise);
+    }
 
     @Override
     public void close(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {
@@ -42,7 +54,7 @@ public class SimpleDuplexHandler extends ChannelDuplexHandler {
     @Override
     public void handlerAdded(final ChannelHandlerContext ctx) {
         ctx.executor().schedule(() -> {
-            ctx.channel().write("hello netty");
+            ctx.channel().write("handler has been added to pipeline.");
             ctx.write("hello world");
         }, 3, TimeUnit.SECONDS);
     }
